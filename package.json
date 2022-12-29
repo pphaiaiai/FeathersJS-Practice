@@ -1,0 +1,23 @@
+{
+  "name": "feathersjs-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pphaiaiai/feathersjs-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pphaiaiai/feathersjs-practice/issues"
+  },
+  "homepage": "https://github.com/pphaiaiai/feathersjs-practice#readme",
+  "dependencies": {
+    "@feathersjs/feathers": "^5.0.0-pre.34"
+  }
+}
