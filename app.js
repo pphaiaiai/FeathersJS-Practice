@@ -1,13 +1,13 @@
 const feathers = require('@feathersjs/feathers');
-
-const app = feathers();
+const express = require('@feathersjs/express');
+const socketio = require('@feathersjs/socketio');
 
 class MessageService {
   constructor() {
     this.message = [];
   }
 
-  async find(params) {
+  async find() {
     return this.message;
   }
 
@@ -22,24 +22,29 @@ class MessageService {
   }
 }
 
-app.use('messages', new MessageService());
+const app = express(feathers());
 
-app.service('messages').on('created', message => {
-    console.log('A new message has been created', message);   
-})
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname));
 
-const main = async () => {
-    await app.service('messages').create({
-        text: 'Hello world'
-    });
+app.configure(express.rest());
+app.configure(socketio());
 
-    await app.service('messages').create({
-        text: 'Hello world again'
-    });
+app.use('/messages', new MessageService());
 
-    const messages = await app.service('messages').find();
-    console.log('All messages', messages);
-}
+app.use(express.errorHandler());
 
-main();
+app.on('connection', connection => {
+  app.channel('everybody').join(connection);
+});
 
+app.publish(() => app.channel('everybody'));
+
+app.listen(3030).on('listening', () => {
+  console.log('Feathers server listening on localhost:3030');
+});
+
+app.service('messages').create({
+  text: 'Hello from the server'
+}); 

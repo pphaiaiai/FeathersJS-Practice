@@ -2,7 +2,7 @@
   "name": "feathersjs-practice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/pphaiaiai/feathersjs-practice#readme",
   "dependencies": {
-    "@feathersjs/feathers": "^5.0.0-pre.34"
+    "@feathersjs/express": "^4.5.15",
+    "@feathersjs/feathers": "^4.5.15",
+    "@feathersjs/socketio": "^4.5.15"
   }
 }
